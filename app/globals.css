@@ -1,0 +1,260 @@
+/* ========== GLOBAL STYLES ========== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+.mainComponent {
+  flex: 1; /* takes remaining space */
+  display: flex;
+  flex-direction: column; /* optional */
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 100;
+  width: auto;
+}
+
+/* Logo section */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 60px;
+}
+
+/* Right side (links + toggle) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Nav links (desktop) */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #007b00;
+}
+
+/* Toggle Button (hidden by default) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #333;
+}
+
+/* ========== MAIN SECTION ========== */
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* ========== SERVICE CARD ========== */
+.service-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  border: 0.2px solid #e9e4e4;
+  text-align: center;
+  padding: 30px 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.service-card img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.service-card h3 {
+  margin-top: 5px;
+  color: #333;
+  font-weight: 500;
+}
+
+.icon {
+  font-size: 40px;
+  color: green;
+  margin-bottom: 10px;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  background-color: #2c2c2c;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  margin-top: auto;
+  width: auto;
+}
+
+/* ========== CANVAS ========== */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: white;
+  pointer-events: none;
+}
+
+/* =========================================================
+   RESPONSIVE STYLES
+========================================================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 10px 30px;
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .service-grid {
+    gap: 20px;
+  }
+}
+
+/* ========== MOBILE SCREENS ========== */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .nav-right {
+    position: relative;
+  }
+
+  /* Show toggle button */
+  .nav-toggle {
+    display: block;
+  }
+
+  /* Hide links initially */
+  .nav-links {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 200px;
+    max-height: 0;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-top: 1px solid #eee;
+    padding: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-links.open {
+    max-height: 300px; /* large enough for all items */
+    padding: 10px 0;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-links li {
+    width: 100%;
+    padding: 10px 20px;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    color: #333;
+  }
+
+  .logo {
+    height: 50px;
+  }
+
+  .main {
+    padding: 30px 15px;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .service-card {
+    padding: 20px;
+  }
+
+  .service-card img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .footer {
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+}

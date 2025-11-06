@@ -1,0 +1,210 @@
+/* ========== MAIN CONTAINER ========== */
+.raise-complaint-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto 5%;
+  padding: 0 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ========== PAGE HEADER ========== */
+.page-header {
+  position: relative;
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+  width: auto;
+  z-index: 10;
+}
+
+/* Colored side strip */
+.page-header .header-strip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, #00a86b, #d77f0b);
+  border-radius: 12px 0 0 12px;
+}
+
+/* ========== FORM CONTAINER ========== */
+.form-container {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border: 0.2px solid #e9e4e4;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* Rows for input fields */
+.row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Input wrapper with icons */
+.input-wrapper {
+  flex: 1 1 250px;
+  position: relative;
+  min-width: 250px;
+  box-sizing: border-box;
+}
+
+/* Input fields */
+.input-wrapper input[type="text"],
+.input-wrapper input[type="number"],
+.input-wrapper input[type="email"],
+.input-wrapper input[type="password"] {
+  width: 100%;
+  height: 45px;
+  padding: 0 12px 0 40px; /* space for icon */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+/* File input */
+.input-wrapper input[type="file"] {
+  height: 45px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  font-size: 0.9rem;
+  line-height: 43px;
+  box-sizing: border-box;
+}
+
+/* Textarea styling */
+.textarea-wrapper textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+/* Focus effect */
+.input-wrapper input:focus,
+.textarea-wrapper textarea:focus {
+  border-color: #00a86b; /* green focus */
+  outline: none;
+}
+
+/* Icons inside inputs */
+.input-wrapper .input-icon {
+  position: absolute;
+  left: 10px; /* slight padding from left */
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(58, 179, 58);
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+/* Submit button */
+.submit-btn {
+  background-color: #0070f3;
+  color: white;
+  padding: 12px 35px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+  font-weight: 500;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #005bb5;
+}
+
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
+@media (max-width: 992px) {
+  .form-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .input-wrapper {
+    min-width: 100%;
+    flex: 0;
+  }
+
+  .input-wrapper input[type="text"],
+  .input-wrapper input[type="number"],
+  .input-wrapper input[type="email"],
+  .input-wrapper input[type="password"] {
+    padding-left: 35px; /* reduce padding for smaller screens */
+  }
+
+  .page-header {
+    font-size: 1.3rem;
+    padding: 12px 20px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    font-size: 1.1rem;
+    padding: 10px 15px;
+  }
+
+  .form-container {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .submit-btn {
+    font-size: 0.9rem;
+  }
+}
+
+/* Canvas behind the form */
+canvas {
+  z-index: -10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+}

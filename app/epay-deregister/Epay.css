@@ -1,0 +1,157 @@
+/* Main container */
+.raise-complaint-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent; /* keep canvas visible */
+  margin-top: 20px;
+  position: relative;
+  z-index: 1; /* content above canvas */
+}
+
+/* Page header */
+.raise-complaint-main h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.85); /* readable */
+  padding: 12px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Form container */
+.form-container {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  background-color: rgba(255, 255, 255, 0.85); /* semi-transparent */
+  padding: 30px;
+  border-radius: 12px;
+  border: 0.2px solid #e9e4e4;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px); /* subtle blur behind form for readability */
+}
+
+/* Rows for input fields */
+.row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+/* Input wrapper for icons and inputs */
+.input-wrapper {
+  flex: 1 1 250px; /* flexible width but minimum 250px */
+  position: relative;
+  min-width: 250px;
+}
+
+/* Regular input fields */
+.input-wrapper input[type="text"],
+.input-wrapper input[type="number"],
+.input-wrapper input[type="email"],
+.input-wrapper input[type="password"] {
+  width: 100%;
+  height: 45px; /* consistent height */
+  padding: 0 12px 0 40px; /* space for icon */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  background-color: rgba(255, 255, 255, 0.95); /* slightly transparent for canvas visibility */
+}
+
+/* Textarea styling */
+.textarea-wrapper textarea {
+  width: 100%;
+  height: 120px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Focus effect */
+.input-wrapper input:focus,
+.textarea-wrapper textarea:focus {
+  border-color: green;
+  box-shadow: 0 0 5px rgba(0, 168, 107, 0.4);
+  outline: none;
+}
+
+/* Icons inside inputs */
+.input-wrapper .input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%; /* center vertically */
+  transform: translateY(-50%);
+  color: rgb(58, 179, 58);
+  font-size: 1.2rem;
+  pointer-events: none; /* click passes through icon */
+}
+
+/* Submit button */
+.submit-btn {
+  background-color: #0d6efd;
+  color: white;
+  padding: 12px 35px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #0b5ed7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .input-wrapper {
+    min-width: 100%;
+  }
+}
+
+.page-header {
+  position: relative;
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px 30px;
+  margin-bottom: 35px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000000; /* dark green for banking feel */
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* Colored side strip */
+.page-header .header-strip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, #00a86b, #d77f0b); /* green to blue gradient */
+  border-radius: 12px 0 0 12px;
+}

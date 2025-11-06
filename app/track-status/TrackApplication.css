@@ -1,0 +1,122 @@
+/* ========== CONTAINER ========== */
+.track-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 66vh;
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1; /* sits above animated canvas */
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ========== PAGE HEADER ========== */
+.page-header {
+  position: relative;
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+  z-index: 10;
+  max-width: 90%;
+  width: auto;
+}
+
+/* Left gradient strip */
+.page-header .header-strip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, #00a86b, #d77f0b);
+  border-radius: 12px 0 0 12px;
+}
+
+/* ========== PARAGRAPH ========== */
+.track-main p {
+  color: #222;
+  margin-bottom: 20px;
+  max-width: 500px;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.7); /* semi-transparent */
+  padding: 8px 12px;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+/* ========== SEARCH FORM ========== */
+.search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.search-icon {
+  padding: 10px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.search-form input {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.search-form input::placeholder {
+  color: #aaa;
+}
+
+/* ========== RESPONSIVE ADJUSTMENTS ========== */
+@media (max-width: 768px) {
+  .page-header {
+    font-size: 1.3rem;
+    padding: 12px 20px;
+  }
+
+  .track-main p {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    font-size: 1.1rem;
+    padding: 10px 15px;
+  }
+
+  .track-main p {
+    font-size: 0.85rem;
+  }
+  .search-form input {
+    font-size: 0.9rem;
+  }
+}
