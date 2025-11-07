@@ -160,36 +160,37 @@ export default function Calculators() {
               <h4 className="highlight">
                 Total Interest Payable: Nu. {totalInterest.toFixed(2)}
               </h4>
-
-              <table className="result-table">
-                <thead>
-                  <tr>
-                    <th>Payment #</th>
-                    <th>Principal</th>
-                    <th>Interest</th>
-                    <th>Total Payment</th>
-                    <th>Remaining Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {schedule.map((row) => (
-                    <tr key={row.paymentNumber}>
-                      <td>{row.paymentNumber}</td>
-                      <td>Nu. {row.principal.toFixed(2)}</td>
-                      <td>Nu. {row.interest.toFixed(2)}</td>
-                      <td>Nu. {row.totalPayment.toFixed(2)}</td>
-                      <td>Nu. {row.remainingBalance.toFixed(2)}</td>
+              <div className="table-wrapper">
+                <table className="result-table">
+                  <thead>
+                    <tr>
+                      <th>Payment #</th>
+                      <th>Principal</th>
+                      <th>Interest</th>
+                      <th>Total Payment</th>
+                      <th>Remaining Balance</th>
                     </tr>
-                  ))}
-                  <tr className="total-row">
-                    <td>Total</td>
-                    <td>Nu. {parseFloat(loanAmount).toFixed(2)}</td>
-                    <td>Nu. {totalInterest.toFixed(2)}</td>
-                    <td>Nu. {totalPayment.toFixed(2)}</td>
-                    <td>–</td>
-                  </tr>
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {schedule.map((row) => (
+                      <tr key={row.paymentNumber}>
+                        <td>{row.paymentNumber}</td>
+                        <td>Nu. {row.principal.toFixed(2)}</td>
+                        <td>Nu. {row.interest.toFixed(2)}</td>
+                        <td>Nu. {row.totalPayment.toFixed(2)}</td>
+                        <td>Nu. {row.remainingBalance.toFixed(2)}</td>
+                      </tr>
+                    ))}
+                    <tr className="total-row">
+                      <td>Total</td>
+                      <td>Nu. {parseFloat(loanAmount).toFixed(2)}</td>
+                      <td>Nu. {totalInterest.toFixed(2)}</td>
+                      <td>Nu. {totalPayment.toFixed(2)}</td>
+                      <td>–</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
         </div>

@@ -35,12 +35,13 @@
 /* Left gradient strip */
 .page-header .header-strip {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 6px;
-  height: 100%;
-  background: linear-gradient(to bottom, #00a86b, #d77f0b);
-  border-radius: 12px 0 0 12px;
+  bottom: 0; /* move to bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; /* control width of line */
+  height: 4px; /* thickness */
+  background: linear-gradient(to right, #00a86b, #d77f0b);
+  border-radius: 10px;
 }
 
 /* ========== DESCRIPTION ========== */

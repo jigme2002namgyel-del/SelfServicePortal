@@ -11,7 +11,9 @@ export default function Contact() {
 
   return (
     <main className="contact-container">
+
       <div className="address-card">
+        <h2 className="contact-title">Get in Touch with Us</h2>
         <p>
           <FaMapMarkerAlt className="icon" />
           Corporate Head Office, Chubachu, Thimphu

@@ -1,4 +1,4 @@
-/* Main container */
+/* ================= MAIN CONTAINER ================= */
 .raise-complaint-main {
   display: flex;
   flex-direction: column;
@@ -7,23 +7,43 @@
   margin-top: 20px;
   position: relative;
   z-index: 1; /* content above canvas */
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
-/* Page header */
-.raise-complaint-main h2 {
+/* ================= PAGE HEADER ================= */
+.raise-complaint-main .page-header {
+  position: relative;
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px 30px;
+  margin-bottom: 35px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   font-size: 1.75rem;
   font-weight: 600;
-  margin-bottom: 25px;
-  position: relative;
-  background-color: rgba(255, 255, 255, 0.85); /* readable */
-  padding: 12px 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  color: #000000;
   text-align: center;
+  display: inline-block;
+  overflow: hidden;
+  z-index: 10;
+  max-width: 90%;
+  width: auto;
 }
 
-/* Form container */
-.form-container {
+/* Colored side strip */
+.raise-complaint-main .page-header .header-strip {
+  position: absolute;
+  bottom: 0; /* move to bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; /* control width of line */
+  height: 4px; /* thickness */
+  background: linear-gradient(to right, #00a86b, #d77f0b);
+  border-radius: 10px;
+}
+
+/* ================= FORM CONTAINER ================= */
+.raise-complaint-main .form-container {
   width: 100%;
   max-width: 900px;
   display: flex;
@@ -34,42 +54,41 @@
   border-radius: 12px;
   border: 0.2px solid #e9e4e4;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px); /* subtle blur behind form for readability */
+  backdrop-filter: blur(5px);
+  box-sizing: border-box;
 }
 
-/* Rows for input fields */
-.row {
+/* ================= ROWS ================= */
+.raise-complaint-main .row {
   display: flex;
   gap: 20px;
   flex-wrap: wrap; /* allows wrapping on smaller screens */
 }
 
-/* Input wrapper for icons and inputs */
-.input-wrapper {
-  flex: 1 1 250px; /* flexible width but minimum 250px */
+/* ================= INPUTS ================= */
+.raise-complaint-main .input-wrapper {
+  flex: 1 1 250px;
   position: relative;
   min-width: 250px;
 }
 
-/* Regular input fields */
-.input-wrapper input[type="text"],
-.input-wrapper input[type="number"],
-.input-wrapper input[type="email"],
-.input-wrapper input[type="password"] {
+.raise-complaint-main .input-wrapper input[type="text"],
+.raise-complaint-main .input-wrapper input[type="number"],
+.raise-complaint-main .input-wrapper input[type="email"],
+.raise-complaint-main .input-wrapper input[type="password"] {
   width: 100%;
-  height: 45px; /* consistent height */
-  padding: 0 12px 0 40px; /* space for icon */
+  height: 45px;
+  padding: 0 12px 0 40px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 0.9rem;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.95);
   font-family: sans-serif;
-  background-color: rgba(255, 255, 255, 0.95); /* slightly transparent for canvas visibility */
 }
 
-/* Textarea styling */
-.textarea-wrapper textarea {
+.raise-complaint-main .textarea-wrapper textarea {
   width: 100%;
   height: 120px;
   padding: 12px;
@@ -78,31 +97,31 @@
   font-size: 0.9rem;
   resize: vertical;
   box-sizing: border-box;
-  font-family: sans-serif;
   background-color: rgba(255, 255, 255, 0.95);
+  font-family: sans-serif;
 }
 
-/* Focus effect */
-.input-wrapper input:focus,
-.textarea-wrapper textarea:focus {
+/* ================= FOCUS EFFECT ================= */
+.raise-complaint-main .input-wrapper input:focus,
+.raise-complaint-main .textarea-wrapper textarea:focus {
   border-color: green;
   box-shadow: 0 0 5px rgba(0, 168, 107, 0.4);
   outline: none;
 }
 
-/* Icons inside inputs */
-.input-wrapper .input-icon {
+/* ================= ICONS ================= */
+.raise-complaint-main .input-wrapper .input-icon {
   position: absolute;
   left: 12px;
-  top: 50%; /* center vertically */
+  top: 50%;
   transform: translateY(-50%);
   color: rgb(58, 179, 58);
   font-size: 1.2rem;
-  pointer-events: none; /* click passes through icon */
+  pointer-events: none;
 }
 
-/* Submit button */
-.submit-btn {
+/* ================= BUTTON ================= */
+.raise-complaint-main .submit-btn {
   background-color: #0d6efd;
   color: white;
   padding: 12px 35px;
@@ -114,44 +133,63 @@
   transition: background-color 0.2s;
 }
 
-.submit-btn:hover {
+.raise-complaint-main .submit-btn:hover {
   background-color: #0b5ed7;
 }
 
-/* Responsive adjustments */
+/* ================= RESPONSIVE ================= */
+@media (max-width: 992px) {
+  .raise-complaint-main .form-container {
+    margin-bottom: 20px;
+  }
+  .raise-complaint-main .form-container {
+    padding: 25px;
+  }
+
+  .raise-complaint-main .row {
+    gap: 15px;
+  }
+}
+
 @media (max-width: 768px) {
-  .row {
+  .raise-complaint-main .row {
     flex-direction: column;
   }
 
-  .input-wrapper {
+  .raise-complaint-main .input-wrapper {
+    flex: 1 1 1px;
+  }
+
+  .raise-complaint-main .input-wrapper {
     min-width: 100%;
+  }
+
+  .raise-complaint-main .submit-btn {
+    width: 100%;
+    max-width: 250px;
+    align-self: center;
   }
 }
 
-.page-header {
-  position: relative;
-  background-color: white;
-  border-radius: 12px;
-  padding: 15px 30px;
-  margin-bottom: 35px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #000000; /* dark green for banking feel */
-  text-align: center;
-  display: inline-block;
-  overflow: hidden;
-  z-index: 10;
-}
+@media (max-width: 480px) {
+  .raise-complaint-main .page-header {
+    font-size: 1.4rem;
+    padding: 10px 15px;
+  }
 
-/* Colored side strip */
-.page-header .header-strip {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 6px;
-  height: 100%;
-  background: linear-gradient(to bottom, #00a86b, #d77f0b); /* green to blue gradient */
-  border-radius: 12px 0 0 12px;
+  .raise-complaint-main .form-container {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .raise-complaint-main .input-wrapper input,
+  .raise-complaint-main .textarea-wrapper textarea {
+    font-size: 0.85rem;
+    height: 40px;
+  }
+
+  .raise-complaint-main .submit-btn {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
 }
