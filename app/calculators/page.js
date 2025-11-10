@@ -63,37 +63,82 @@ export default function Calculators() {
   // FD Calculation
   const calculateFD = () => {
     const P = parseFloat(fdPrincipal);
-    const n = parseFloat(fdMonths);
-    const r = fixedRate / 12 / 100;
+    const termMonths = parseFloat(fdMonths);
 
-    if (!P || !n) return alert("Please fill all fields correctly.");
+    if (!P || P < 10000) {
+      return alert(
+        "Please enter a valid principal amount (minimum Nu.10,000)."
+      );
+    }
+    if (!termMonths || termMonths < 3) {
+      return alert("Please enter a valid term (minimum 3 months).");
+    }
 
-    const maturity = P * Math.pow(1 + r, n);
-    const totalInterest = maturity - P;
+    const T = termMonths / 12;
+    let rate;
+
+    if (termMonths === 3 && T <= 1) rate = 5.0;
+    else if (T > 1 && T <= 2) rate = 6.75;
+    else if (T > 2 && T <= 3) rate = 7.25;
+    else if (T > 3 && T <= 4) rate = 7.5;
+    else if (T > 4 && T <= 5) rate = 7.75;
+    else if (T > 5 && T <= 6) rate = 8.0;
+    else if (T > 6 && T <= 7) rate = 8.25;
+    else if (T > 7 && T <= 10) rate = 8.5;
+    else rate = 5.0;
+
+    const R = rate / 100;
+    const interest = P * R * T; // Simple interest
+    const maturity = P + interest;
+
     setFdResult({
-      maturity,
       principal: P,
-      interest: totalInterest,
-      rate: fixedRate,
+      maturity,
+      interest,
+      rate,
     });
   };
 
   // RD Calculation
   const calculateRD = () => {
     const M = parseFloat(rdMonthly);
-    const n = parseFloat(rdMonths);
-    const r = fixedRate / 12 / 100;
+    const termMonths = parseFloat(rdMonths);
 
-    if (!M || !n) return alert("Please fill all fields correctly.");
+    if (!M || M < 100) {
+      return alert("Please enter a valid monthly deposit (minimum Nu.100).");
+    }
+    if (!termMonths || termMonths < 7) {
+      return alert("Please enter a valid term (minimum 7 months).");
+    }
 
-    const maturity = M * n + (M * n * (n + 1) * r) / 2;
-    const principal = M * n;
-    const totalInterest = maturity - principal;
+    const N = termMonths;
+    const T = N / 12;
+    let rate;
+
+    if (T >= 0.5 && T <= 0.75) rate = 5.75;
+    else if (T > 0.75 && T <= 1) rate = 6.0;
+    else if (T > 1 && T <= 2) rate = 7.0;
+    else if (T > 2 && T <= 3) rate = 7.5;
+    else if (T > 3 && T <= 4) rate = 8.0;
+    else if (T > 4 && T <= 5) rate = 8.25;
+    else if (T > 5 && T <= 6) rate = 8.5;
+    else if (T > 6 && T <= 7) rate = 8.6;
+    else if (T > 7 && T <= 8) rate = 8.8;
+    else if (T > 8 && T <= 9) rate = 8.9;
+    else if (T > 9 && T <= 10) rate = 9.0;
+    else if (T > 10) rate = 9.1;
+    else rate = 5.75;
+
+    const R = rate / 100 / 12; // monthly rate
+    const maturity = M * N + (M * N * (N + 1) * R) / 2; // Approximate simple interest formula
+    const principal = M * N;
+    const interest = maturity - principal;
+
     setRdResult({
-      maturity,
       principal,
-      interest: totalInterest,
-      rate: fixedRate,
+      maturity,
+      interest,
+      rate,
     });
   };
 

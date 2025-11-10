@@ -1,8 +1,9 @@
 import "./globals.css";
 import AnimatedBackground from "./AnimatedBackground";
-import ClientWrapper from "./ClientWrapper"; 
+import ClientWrapper from "./ClientWrapper";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+// import AiChatbot from "@/components/AiChatbot";
 
 export const metadata = {
   title: "BDB Self Service Portal",

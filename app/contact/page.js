@@ -13,7 +13,7 @@ export default function Contact() {
     <main className="contact-container">
 
       <div className="address-card">
-        <h2 className="contact-title">Get in Touch with Us</h2>
+        <h2 className="contact-title">Get In Touch With Us</h2>
         <p>
           <FaMapMarkerAlt className="icon" />
           Corporate Head Office, Chubachu, Thimphu

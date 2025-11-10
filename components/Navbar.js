@@ -25,7 +25,9 @@ export default function Navbar() {
     <nav className="navbar">
       {/* Left - Logo */}
       <div className="nav-left">
-        <img src="/bdblogo.png" alt="BDB Logo" className="logo" />
+        <a href="/" onClick={() => setMenuOpen(false)}>
+          <img src="/bdblogo.png" alt="BDB Logo" className="logo" />
+        </a>
       </div>
 
       {/* Right - Toggle + Links */}
@@ -39,8 +41,16 @@ export default function Navbar() {
         </button>
 
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-          <li><a href="/" onClick={() => setMenuOpen(false)}>Home</a></li>
-          <li><a href="/contact" onClick={() => setMenuOpen(false)}>Contact Us</a></li>
+          <li>
+            <a href="/" onClick={() => setMenuOpen(false)}>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/contact" onClick={() => setMenuOpen(false)}>
+              Contact Us
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

@@ -1,7 +1,7 @@
 /* ================= GENERAL LAYOUT ================= */
 .calc-container {
   max-width: 56%;
-  margin: 50px auto;
+  margin: 20px auto;
   padding: 25px;
   font-family: "Inter", sans-serif;
   min-height: 53vh;
@@ -121,7 +121,8 @@
 .result-table th,
 .result-table td {
   border: 1px solid #dee2e6;
-  padding: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   text-align: center;
 }
 
@@ -226,7 +227,7 @@
   }
 
   .input-grid.small-inputs input {
-    width: 150px;
+    width: 90%;
   }
 
   .tab-btn {
@@ -255,7 +256,7 @@
   }
 
   .input-grid.small-inputs input {
-    width: 100%;
+    width: 90%;
   }
 
   .tab-btn {

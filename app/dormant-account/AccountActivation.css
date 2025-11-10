@@ -156,7 +156,6 @@
 
   .activation-main button {
     width: 100%;
-    max-width: 200px;
     align-self: center;
   }
 }
