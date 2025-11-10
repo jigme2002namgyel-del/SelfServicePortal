@@ -1,9 +1,11 @@
 // js/config.js
-const API_URL =
-  typeof window !== "undefined" &&
-  window.location.hostname === "selfservice.bdb.bt"
-    ? "https://selfservice.bdb.bt/api" // Internal (office network)
-    : "/api"; // External (proxy via frontend Nginx)
+let API_URL = "/api"; // default
+if (typeof window !== "undefined") {
+  API_URL =
+    window.location.hostname === "selfservice.bdb.bt"
+      ? "https://selfservice.bdb.bt/api"
+      : "/api";
+}
 
 const config = {
   api_url: API_URL,
