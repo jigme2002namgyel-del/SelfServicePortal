@@ -25,7 +25,7 @@
 }
 
 .tab-btn {
-  border: none;
+  border: 1px solid #007a4e;
   background: #e9ecef;
   padding: 10px 25px;
   font-size: 15px;
@@ -36,7 +36,7 @@
 }
 
 .tab-btn.active {
-  background: #45a02e;
+  background: #00a86b;
   color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -59,7 +59,7 @@
 
 /* ================= BUTTON ================= */
 .calc-btn {
-  background: #007bff;
+  background: #00a86b;
   color: #fff;
   border: none;
   padding: 12px 25px;
@@ -70,7 +70,7 @@
 }
 
 .calc-btn:hover {
-  background: #0056b3;
+  background: #007a4e;
 }
 
 /* ================= RESULTS ================= */

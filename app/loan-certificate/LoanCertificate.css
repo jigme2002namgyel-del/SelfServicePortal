@@ -90,7 +90,7 @@
 .loan-form button {
   padding: 10px 20px;
   font-size: 0.9rem;
-  background-color: #0070f3;
+  background-color: #00a86b;
   color: white;
   border: none;
   border-radius: 6px;
@@ -101,7 +101,7 @@
 }
 
 .loan-form button:hover {
-  background-color: #005bb5;
+  background-color: #007a4e;
 }
 
 /* ========== RESPONSIVE STYLES ========== */
@@ -143,3 +143,38 @@
     max-width: 100%;
   }
 }
+
+.result-table {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 700px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow-x: auto;
+}
+
+.result-table h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.result-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.result-table th,
+.result-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.result-table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+}
+

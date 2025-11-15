@@ -1,11 +1,5 @@
 // js/config.js
-let API_URL = "/api"; // default
-if (typeof window !== "undefined") {
-  API_URL =
-    window.location.hostname === "selfservice.bdb.bt"
-      ? "https://selfservice.bdb.bt/api"
-      : "/api";
-}
+const API_URL ="https://selfservice.bdb.bt/api"
 
 const config = {
   api_url: API_URL,

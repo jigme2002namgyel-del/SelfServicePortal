@@ -125,14 +125,14 @@
   left: 10px; /* slight padding from left */
   top: 50%;
   transform: translateY(-50%);
-  color: rgb(58, 179, 58);
+  color: #00a86b;
   font-size: 1.2rem;
   pointer-events: none;
 }
 
 /* Submit button */
 .submit-btn {
-  background-color: #0070f3;
+  background-color: #00a86b;
   color: white;
   padding: 12px 35px;
   border-radius: 6px;
@@ -145,8 +145,23 @@
 }
 
 .submit-btn:hover {
-  background-color: #005bb5;
+  background-color: #007a4e;
 }
+
+.swal-confirm-btn {
+  background-color: #00a86b !important; /* main green color */
+  color: #fff !important;
+  border: none !important;
+  padding: 8px 20px !important;
+  font-size: 1rem !important;
+  border-radius: 5px !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.swal-confirm-btn:hover {
+  background-color: #007a4e !important; /* darker hover */
+}
+
 
 /* ========== RESPONSIVE ADJUSTMENTS ========== */
 @media (max-width: 992px) {

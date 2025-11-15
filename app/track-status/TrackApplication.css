@@ -121,3 +121,82 @@
     font-size: 0.9rem;
   }
 }
+
+
+/* ========== SEARCH BUTTON ========== */
+.search-form button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #00a86b;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.search-form button:hover {
+  background-color: #007a4e;
+}
+/* ========== TABLE CONTAINER WITH WHITE BACKGROUND ========== */
+.table-container {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 20px;
+  overflow-x: auto;
+  background-color: #ffffff; /* white background */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 0.95rem;
+  background-color: #ffffff; /* ensures table itself is white */
+}
+
+.table-container th,
+.table-container td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table-container th {
+  font-weight: 600;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.table-container td a {
+  color: #00a86b;
+  text-decoration: none;
+  transition: text-decoration 0.2s ease;
+}
+
+.table-container td a:hover {
+  text-decoration: underline;
+}
+
+/* ========== RESPONSIVE ADJUSTMENTS FOR TABLE ========== */
+@media (max-width: 768px) {
+  .table-container th,
+  .table-container td {
+    padding: 10px 5px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-container th,
+  .table-container td {
+    padding: 8px 3px;
+    font-size: 0.8rem;
+  }
+}
+

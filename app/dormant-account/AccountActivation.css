@@ -43,7 +43,7 @@
 /* ================= ACTIVATION CARD ================= */
 .activation-main .activation-card {
   background-color: #fff;
-  padding: 30px 40px;
+  padding: 30px 28px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   max-width: 700px;
@@ -65,7 +65,6 @@
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: 10px;
 }
 
 .activation-main .inputs-row input {
@@ -88,14 +87,12 @@
 /* OTP selection section */
 .activation-main .otp-selection {
   text-align: left;
-  margin-top: 15px;
 }
 
 .activation-main .radio-group {
   display: flex;
   gap: 20px;
-  margin-top: 10px;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
 .activation-main .radio-group label {
@@ -108,9 +105,9 @@
 /* ================= BUTTON ================= */
 .activation-main button {
   padding: 10px;
-  margin-top: 25px;
+  margin-top: 15px;
   font-size: 1rem;
-  background-color: #0070f3;
+  background-color: #00a86b;
   color: white;
   border: none;
   border-radius: 6px;
@@ -120,7 +117,7 @@
 }
 
 .activation-main button:hover {
-  background-color: #005bb5;
+  background-color: #007a4e;
 }
 
 /* ================= RESPONSIVE STYLES ================= */
@@ -150,7 +147,6 @@
   }
 
   .activation-main .radio-group {
-    flex-direction: column;
     gap: 10px;
   }
 
@@ -176,5 +172,129 @@
 
   .activation-main button {
     font-size: 0.9rem;
+  }
+}
+
+/* ================= OTP MODAL ================= */
+.otp-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.otp-modal-content {
+  background-color: #fff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.otp-modal-content h5 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.otp-modal-content input {
+  padding: 10px;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.otp-modal-content input:focus {
+  border: 1px solid #00a86b;
+  box-shadow: 0 0 5px rgba(0, 168, 107, 0.4);
+}
+
+.otp-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.otp-buttons button {
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  background-color: #00a86b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.otp-buttons button:hover {
+  background-color: #007a4e;
+}
+
+/* Responsive OTP modal */
+@media (max-width: 480px) {
+  .otp-modal-content {
+    width: 90%;
+    padding: 20px 15px;
+  }
+
+  .otp-modal-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .otp-buttons button {
+    flex: 1 1 100%;
+    font-size: 0.85rem;
+  }
+}
+
+/* ================= CONDITIONAL INPUTS ================= */
+.activation-main .otp-selection input {
+  width: 32%;
+  padding: 10px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.activation-main .otp-selection input:focus {
+  border: 1px solid #00a86b;
+  box-shadow: 0 0 5px rgba(0, 168, 107, 0.4);
+}
+
+/* Ensure spacing below OTP radio buttons */
+.activation-main .otp-selection {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Adjust for mobile responsiveness */
+@media (max-width: 768px) {
+  .activation-main .otp-selection input {
+    font-size: 0.85rem;
+    width: 100%;
   }
 }
