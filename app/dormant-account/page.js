@@ -192,7 +192,7 @@ export default function AccountActivation() {
                   checked={otpMedium === "email"}
                   onChange={() => {
                     setOtpMedium("email");
-                    setContact(""); // reset contact
+                    setContact("");
                   }}
                 />
                 Email
@@ -204,14 +204,13 @@ export default function AccountActivation() {
                   checked={otpMedium === "sms"}
                   onChange={() => {
                     setOtpMedium("sms");
-                    setContact(""); // reset contact
+                    setContact("");
                   }}
                 />
                 SMS
               </label>
             </div>
 
-            {/* Conditionally render the input */}
             {otpMedium === "email" && (
               <input
                 type="email"
@@ -237,7 +236,6 @@ export default function AccountActivation() {
           <button type="submit">Submit</button>
         </form>
 
-        {/* OTP Modal */}
         {showOtpModal && (
           <div className="otp-modal">
             <div className="otp-modal-content">

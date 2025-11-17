@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import "./TrackApplication.css";
-import config from "../../components/config"; // make sure the path is correct
+import config from "../../components/config";
 
 export default function TrackApplication() {
   const { api_url, apiToken } = config;
@@ -37,7 +37,6 @@ export default function TrackApplication() {
       const ticketData = data.message || [];
 
       if (Array.isArray(ticketData) && ticketData.length > 0) {
-        // Sort by creation date descending
         ticketData.sort(
           (a, b) => new Date(b.creation).getTime() - new Date(a.creation).getTime()
         );

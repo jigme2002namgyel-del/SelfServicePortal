@@ -172,7 +172,6 @@ export default function RaiseComplaint() {
     try {
       let fileUrl = null;
 
-      // 1️⃣ Upload file first (if any)
       if (file) {
         const fileForm = new FormData();
         fileForm.append("file", file);
@@ -204,10 +203,9 @@ export default function RaiseComplaint() {
         }
 
         const uploadResult = await uploadRes.json();
-        fileUrl = uploadResult.message.file_url; // save the URL
+        fileUrl = uploadResult.message.file_url;
       }
 
-      // 2️⃣ Create ticket with file URL if uploaded
       let payload = {
         cid_no: cidNumber || undefined,
         account_no: accountNumber || undefined,
@@ -252,7 +250,6 @@ export default function RaiseComplaint() {
       const ticketResult = await ticketRes.json();
       const ticketName = ticketResult.data.name;
 
-      // 3️⃣ Clear form and reset file input
       setFormData({
         cidNumber: "",
         phoneNumber: "",
@@ -297,7 +294,6 @@ export default function RaiseComplaint() {
         Raise Complaint
       </h2>
 
-      {/* Your frontend -- unchanged */}
       <form className="form-container" onSubmit={handleSubmit}>
         <div className="row">
           <div className="input-wrapper">

@@ -102,7 +102,6 @@ export default function LoanCertificate() {
         <button type="submit">Submit</button>
       </form>
 
-      {/* Result Table */}
       {resultData && (
         <div className="result-table">
           <h3>Interest Details</h3>
