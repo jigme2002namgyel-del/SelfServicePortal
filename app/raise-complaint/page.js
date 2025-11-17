@@ -35,8 +35,56 @@ export default function RaiseComplaint() {
     }));
   };
 
+  const MAX_FILE_SIZE = 2 * 1024 * 1024;
+
+  const allowedTypes = [
+    "image/jpeg",
+    "image/png",
+    "application/pdf",
+    "text/plain",
+    "text/csv",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.ms-excel",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "application/vnd.ms-powerpoint",
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  ];
+
   const handleFileChange = (e) => {
-    setFile(e.target.files[0] || null);
+    const selected = e.target.files[0];
+    if (!selected) return;
+
+    if (selected.size > MAX_FILE_SIZE) {
+      Swal.fire({
+        title: "File too large",
+        text: "Maximum allowed size is 5MB",
+        icon: "warning",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      return;
+    }
+
+    if (!allowedTypes.includes(selected.type)) {
+      Swal.fire({
+        title: "Invalid file format",
+        text: "This file type is not allowed",
+        icon: "error",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      return;
+    }
+
+    // ✔ Valid file
+    setFile(selected);
   };
 
   // Fetch details
@@ -173,21 +221,31 @@ export default function RaiseComplaint() {
       // 2️⃣ HANDLE FILE UPLOAD if a file exists
       if (file) {
         if (file.size > 2 * 1024 * 1024) {
-          Swal.fire("File too large", "Max file size is 2 MB", "warning");
+          Swal.fire({
+            title: "File too large",
+            text: "Maximum allowed size is 2 MB",
+            icon: "warning",
+            toast: true,
+            position: "top",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          });
           setIsSubmitting(false);
           return;
         }
 
         const fileForm = new FormData();
         fileForm.append("file", file);
-        fileForm.append("attached_to_doctype", "Ticket");
-        fileForm.append("attached_to_name", ticketName);
-        fileForm.append("filename", file.name);
+        fileForm.append("doctype", "Ticket"); // ✔ match backend
+        fileForm.append("docname", ticketName); // ✔ match backend
+        fileForm.append("file_name", file.name);
+        fileForm.append("is_private", "0");
 
         const uploadRes = await fetch(`${api_url}/method/upload_file`, {
           method: "POST",
           headers: {
-            Authorization: `token ${apiToken}`,
+            Authorization: `token ${apiToken}`, // only auth
             Accept: "application/json",
           },
           body: fileForm,
@@ -196,7 +254,16 @@ export default function RaiseComplaint() {
         if (!uploadRes.ok) {
           const errText = await uploadRes.text();
           console.error("File Upload Error:", errText);
-          Swal.fire("Error", "Failed to upload file", "error");
+          Swal.fire({
+            title: "Error",
+            text: "Failed to upload file",
+            icon: "error",
+            toast: true,
+            position: "top",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          });
           setIsSubmitting(false);
           return;
         }
