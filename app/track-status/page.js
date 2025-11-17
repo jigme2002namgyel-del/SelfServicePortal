@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import "./TrackApplication.css";
 import config from "../../components/config";
+import Link from "next/link";
 
 export default function TrackApplication() {
   const { api_url, apiToken } = config;
@@ -38,7 +39,8 @@ export default function TrackApplication() {
 
       if (Array.isArray(ticketData) && ticketData.length > 0) {
         ticketData.sort(
-          (a, b) => new Date(b.creation).getTime() - new Date(a.creation).getTime()
+          (a, b) =>
+            new Date(b.creation).getTime() - new Date(a.creation).getTime()
         );
         setTickets(ticketData);
       } else {
@@ -102,25 +104,33 @@ export default function TrackApplication() {
               {tickets.map((ticket) => {
                 let statusColor = "black";
                 if (ticket.workflow_state === "Pending") statusColor = "green";
-                else if (ticket.workflow_state === "In Progress") statusColor = "blue";
-                else if (ticket.workflow_state === "Closed") statusColor = "red";
+                else if (ticket.workflow_state === "In Progress")
+                  statusColor = "blue";
+                else if (ticket.workflow_state === "Closed")
+                  statusColor = "red";
 
                 return (
                   <tr key={ticket.name}>
                     <td>
-                      <a
-                        href={`Detail.html?ticket_number=${ticket.name}`}
+                      <Link
+                        href={`/ticket/${ticket.name}`}
                         style={{ textDecoration: "none" }}
-                        onMouseOver={(e) => (e.currentTarget.style.textDecoration = "underline")}
-                        onMouseOut={(e) => (e.currentTarget.style.textDecoration = "none")}
+                        onMouseOver={(e) =>
+                          (e.currentTarget.style.textDecoration = "underline")
+                        }
+                        onMouseOut={(e) =>
+                          (e.currentTarget.style.textDecoration = "none")
+                        }
                       >
                         {ticket.name || "N/A"}
-                      </a>
+                      </Link>
                     </td>
                     <td style={{ color: statusColor }}>
                       {ticket.workflow_state || "N/A"}
                     </td>
-                    <td>{ticket.creation ? formatDate(ticket.creation) : "N/A"}</td>
+                    <td>
+                      {ticket.creation ? formatDate(ticket.creation) : "N/A"}
+                    </td>
                   </tr>
                 );
               })}

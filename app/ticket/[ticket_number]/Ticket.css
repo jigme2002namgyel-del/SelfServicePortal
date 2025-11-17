@@ -1,0 +1,112 @@
+/* Ticket Card Container */
+.container{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+.ticket-card {
+  background-color: #ffffff; /* white card */
+  border-radius: 12px;       /* rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  padding-left: 25px;
+  padding-right: 35px;
+  padding-bottom: 25px;
+  max-width: 800px;
+  border: 1px solid rgb(224, 224, 224);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.ticket-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Headings */
+.ticket-card h3{
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+
+.ticket-card hr {
+  margin-bottom: 20px;
+  border: none;
+  height: 3px;
+  width: 50%;
+  background-color: #f1a500; /* green line */
+
+}
+
+/* Paragraphs */
+.ticket-card p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Feedback Section */
+.ticket-card .star-rating {
+  display: flex;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.ticket-card .star-rating span {
+  transition: color 0.2s ease;
+}
+
+/* Textarea */
+.ticket-card textarea.form-control {
+  border-radius: 8px;
+  resize: none;
+}
+
+/* Submit Button */
+.ticket-card .btn-primary {
+  background-color: #007bff;
+  border: none;
+  padding: 8px 18px;
+  font-size: 16px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.ticket-card .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments only */
+@media (max-width: 768px) {
+  .container {
+    margin-top: 20px;
+    padding: 0 15px; /* small padding on mobile */
+  }
+
+  .ticket-card {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+  }
+
+  .ticket-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .ticket-card p {
+    font-size: 14px;
+  }
+
+  .ticket-card hr {
+    width: 70%;
+  }
+
+  .ticket-card .btn-primary {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .ticket-card .star-rating {
+    flex-wrap: wrap;
+  }
+}
+
