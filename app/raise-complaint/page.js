@@ -28,15 +28,7 @@ export default function RaiseComplaint() {
   const [file, setFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const MAX_FILE_SIZE = 2 * 1024 * 1024;
-
+  const MAX_FILE_SIZE = 1 * 1024 * 1024; // 1 MB
   const allowedTypes = [
     "image/jpeg",
     "image/png",
@@ -51,6 +43,15 @@ export default function RaiseComplaint() {
     "application/vnd.openxmlformats-officedocument.presentationml.presentation",
   ];
 
+  // Handle input changes
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  // Handle file selection
   const handleFileChange = (e) => {
     const selected = e.target.files[0];
     if (!selected) return;
@@ -58,7 +59,7 @@ export default function RaiseComplaint() {
     if (selected.size > MAX_FILE_SIZE) {
       Swal.fire({
         title: "File too large",
-        text: "Maximum allowed size is 5MB",
+        text: "Maximum allowed size is 1 MB",
         icon: "warning",
         toast: true,
         position: "top",
@@ -83,15 +84,13 @@ export default function RaiseComplaint() {
       return;
     }
 
-    // ✔ Valid file
     setFile(selected);
   };
 
-  // Fetch details
+  // Fetch details by CID, phone, or account
   const handleFetch = async () => {
     const { cidNumber, phoneNumber, accountNumber } = formData;
     const queryParam = cidNumber || phoneNumber || accountNumber;
-
     if (!queryParam) return;
 
     try {
@@ -112,7 +111,6 @@ export default function RaiseComplaint() {
       }
 
       const result = await res.json();
-
       if (result.message && result.message.length > 0) {
         const ticket = result.message[0];
         setFormData({
@@ -132,7 +130,6 @@ export default function RaiseComplaint() {
   // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const {
       cidNumber,
       accountNumber,
@@ -142,16 +139,16 @@ export default function RaiseComplaint() {
       description,
     } = formData;
 
-    // Basic validation
+    // Validation
     if (!cidNumber && !accountNumber) {
       Swal.fire({
         title: "Missing Information",
         text: "Enter CID or Account Number",
         icon: "warning",
         toast: true,
-        position: "top", // or "top-end" for top-right
+        position: "top",
         showConfirmButton: false,
-        timer: 3000, // disappears after 3 seconds
+        timer: 3000,
         timerProgressBar: true,
       });
       return;
@@ -162,90 +159,28 @@ export default function RaiseComplaint() {
         text: "Enter Phone or Email",
         icon: "warning",
         toast: true,
-        position: "top", // or "top-end" for top-right
+        position: "top",
         showConfirmButton: false,
-        timer: 3000, // disappears automatically after 3 seconds
+        timer: 3000,
         timerProgressBar: true,
       });
       return;
     }
 
-    // Prepare ticket payload
-    let payload = {
-      cid_no: cidNumber || undefined,
-      account_no: accountNumber || undefined,
-      email_id: email || undefined,
-      phone_no: phoneNumber || undefined,
-      full_name: fullName || undefined,
-      description: description || undefined,
-      source_of_complaint: "Portal",
-    };
-    payload = Object.fromEntries(
-      Object.entries(payload).filter(([_, v]) => v !== undefined)
-    );
-
     setIsSubmitting(true);
 
     try {
-      // 1️⃣ CREATE TICKET FIRST
-      const ticketRes = await fetch(`${api_url}/resource/Ticket`, {
-        method: "POST",
-        headers: {
-          Authorization: `token ${apiToken}`,
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      let fileUrl = null;
 
-      if (!ticketRes.ok) {
-        const errText = await ticketRes.text();
-        console.error("Ticket Error:", errText);
-        Swal.fire({
-          title: "Error",
-          text: "Failed to submit ticket",
-          icon: "error",
-          toast: true,
-          position: "top", // top-right corner
-          showConfirmButton: false, // no OK button
-          timer: 3000, // disappears after 3 seconds
-          timerProgressBar: true,
-        });
-        setIsSubmitting(false);
-        return;
-      }
-
-      const ticketResult = await ticketRes.json();
-      const ticketName = ticketResult.data.name;
-
-      // 2️⃣ HANDLE FILE UPLOAD if a file exists
+      // 1️⃣ Upload file first (if any)
       if (file) {
-        if (file.size > 2 * 1024 * 1024) {
-          Swal.fire({
-            title: "File too large",
-            text: "Maximum allowed size is 2 MB",
-            icon: "warning",
-            toast: true,
-            position: "top",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-          });
-          setIsSubmitting(false);
-          return;
-        }
-
         const fileForm = new FormData();
         fileForm.append("file", file);
-        fileForm.append("doctype", "Ticket"); // ✔ match backend
-        fileForm.append("docname", ticketName); // ✔ match backend
-        fileForm.append("file_name", file.name);
-        fileForm.append("is_private", "0");
 
         const uploadRes = await fetch(`${api_url}/method/upload_file`, {
           method: "POST",
           headers: {
-            Authorization: `token ${apiToken}`, // only auth
+            Authorization: `token ${apiToken}`,
             Accept: "application/json",
           },
           body: fileForm,
@@ -267,9 +202,57 @@ export default function RaiseComplaint() {
           setIsSubmitting(false);
           return;
         }
+
+        const uploadResult = await uploadRes.json();
+        fileUrl = uploadResult.message.file_url; // save the URL
       }
 
-      // 3️⃣ CLEAR FORM AND FILE INPUT
+      // 2️⃣ Create ticket with file URL if uploaded
+      let payload = {
+        cid_no: cidNumber || undefined,
+        account_no: accountNumber || undefined,
+        email_id: email || undefined,
+        phone_no: phoneNumber || undefined,
+        full_name: fullName || undefined,
+        description: description || undefined,
+        source_of_complaint: "Portal",
+        choose_file: fileUrl || undefined,
+      };
+      payload = Object.fromEntries(
+        Object.entries(payload).filter(([_, v]) => v !== undefined)
+      );
+
+      const ticketRes = await fetch(`${api_url}/resource/Ticket`, {
+        method: "POST",
+        headers: {
+          Authorization: `token ${apiToken}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!ticketRes.ok) {
+        const errText = await ticketRes.text();
+        console.error("Ticket Error:", errText);
+        Swal.fire({
+          title: "Error",
+          text: "Failed to submit ticket",
+          icon: "error",
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      const ticketResult = await ticketRes.json();
+      const ticketName = ticketResult.data.name;
+
+      // 3️⃣ Clear form and reset file input
       setFormData({
         cidNumber: "",
         phoneNumber: "",
@@ -297,9 +280,9 @@ export default function RaiseComplaint() {
         text: "Something went wrong",
         icon: "error",
         toast: true,
-        position: "top", // top-right corner
-        showConfirmButton: false, // no OK button
-        timer: 3000, // disappears after 3 seconds
+        position: "top",
+        showConfirmButton: false,
+        timer: 3000,
         timerProgressBar: true,
       });
     } finally {
