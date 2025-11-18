@@ -264,6 +264,10 @@
     text-align: center;
     margin: 5px 0;
   }
+  .card h3 {
+    font-size: 1.1rem;
+    margin-top: 0;
+  }
 }
 
 /* Small mobile */

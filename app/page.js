@@ -8,7 +8,7 @@ export default function Home() {
     { title: "Track Complaint Status", link: "/track-status", img: "/assets/track-complaint.png" },
     { title: "Loan Interest Certificate for PIT", link: "/loan-certificate", img: "/assets/certificate-pit.png" },
     { title: "Activate Dormant Account", link: "/dormant-account", img: "/assets/activate-dormant-account.png" },
-    { title: "ePay Deregistration Request", link: "/epay-deregister", img: "/assets/epay-deregistration.png" },
+    // { title: "ePay Deregistration Request", link: "/epay-deregister", img: "/assets/epay-deregistration.png" },
     { title: "Online Account Opening", link: "https://kyc.bdb.bt/", img: "/assets/online-acc-open-portal.png" },
     { title: "Update KYC", link: "https://kyc.bdb.bt/", img: "/assets/kyc-update-portal.png" },
     { title: "Calculators", link: "/calculators", img: "/assets/calculator.png" },

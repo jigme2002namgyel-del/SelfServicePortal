@@ -61,10 +61,11 @@ export default function TicketDetailsPage({ params }) {
     <main className="container">
       <div className="ticket-card p-4 shadow bg-white rounded">
         <h3 className="text-warning fw-bold">
-          Ticket Number: <span style={{ color: "#007a4e" }}>{safe(ticket.name)}</span>
+          Ticket Number:{" "}
+          <span style={{ color: "#007a4e" }}>{safe(ticket.name)}</span>
         </h3>
 
-        <hr className="bg-success" />
+        <hr className="line-2" />
 
         <p>
           <strong>Status:</strong> {safe(ticket.status)}
@@ -102,7 +103,9 @@ export default function TicketDetailsPage({ params }) {
           <div className="mt-4">
             {ticket.rating ? (
               <div>
-                <h6 className="text-warning fw-bold">Reviews and Rating</h6>
+                <h4 className="head">Reviews and Rating</h4>
+                
+                <hr className="line" />
                 <p>
                   <strong>Rating:</strong> {ticket.rating} ⭐
                 </p>
@@ -112,22 +115,25 @@ export default function TicketDetailsPage({ params }) {
               </div>
             ) : !submitted ? (
               <form onSubmit={submitFeedback}>
-                <h6 className="text-warning fw-bold">Submit Your Feedback</h6>
+                <h4 className="head">
+                  Submit Your Feedback
+                </h4>
+                <hr className="line" />
 
-                <div className="star-rating d-flex gap-2">
-                  {[1, 2, 3, 4, 5].map((val) => (
-                    <span
-                      key={val}
-                      style={{
-                        fontSize: "30px",
-                        cursor: "pointer",
-                        color: rating >= val ? "gold" : "#ccc",
-                      }}
-                      onClick={() => setRating(val)}
-                    >
-                      ★
-                    </span>
-                  ))}
+                <div className="rate-row">
+                  <span className="rate-title">Rate Us:</span>
+
+                  <div className="star-rating">
+                    {[1, 2, 3, 4, 5].map((val) => (
+                      <span
+                        key={val}
+                        className={rating >= val ? "star selected" : "star"}
+                        onClick={() => setRating(val)}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 <textarea

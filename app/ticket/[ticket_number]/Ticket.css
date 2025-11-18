@@ -1,12 +1,13 @@
 /* Ticket Card Container */
-.container{
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 .ticket-card {
   background-color: #ffffff; /* white card */
-  border-radius: 12px;       /* rounded corners */
+  border-radius: 12px; /* rounded corners */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* subtle shadow */
   padding-left: 25px;
   padding-right: 35px;
@@ -23,18 +24,18 @@
 }
 
 /* Headings */
-.ticket-card h3{
-    margin-bottom: 0;
-    font-size: 1.5rem;
+.ticket-card h3 {
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
-.ticket-card hr {
+.line-2 {
   margin-bottom: 20px;
   border: none;
   height: 3px;
   width: 50%;
   background-color: #f1a500; /* green line */
-
 }
 
 /* Paragraphs */
@@ -49,6 +50,8 @@
   display: flex;
   gap: 5px;
   margin: 10px 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .ticket-card .star-rating span {
@@ -57,22 +60,44 @@
 
 /* Textarea */
 .ticket-card textarea.form-control {
+  width: 100%;
+  padding: 12px 14px;
   border-radius: 8px;
-  resize: none;
+  font-size: 16px;
+  color: #333;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  font-family: "Segoe UI", sans-serif;
 }
 
 /* Submit Button */
 .ticket-card .btn-primary {
-  background-color: #007bff;
+  background-color: #00a86b;
   border: none;
   padding: 8px 18px;
   font-size: 16px;
   border-radius: 6px;
   transition: background-color 0.3s ease;
+  color: white;
 }
 
 .ticket-card .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #007a4e;
+}
+
+.head {
+  text-align: center;
+  padding-top: 5px;
+  margin-bottom: 0;
+  font-size: 1.3rem;
+}
+
+.line {
+  border: none;
+  height: 3px;
+  width: 30%;
+  background-color: #f1a500; /* green line */
 }
 
 /* Responsive adjustments only */
@@ -96,10 +121,6 @@
     font-size: 14px;
   }
 
-  .ticket-card hr {
-    width: 70%;
-  }
-
   .ticket-card .btn-primary {
     width: 100%;
     padding: 10px;
@@ -110,3 +131,53 @@
   }
 }
 
+/* Row container */
+.rate-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* "Rate Us" label */
+.rate-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #000000;
+  padding-left: 3px;
+}
+
+/* Star container */
+.star-rating {
+  display: flex;
+  gap: 8px;
+}
+
+/* Default star style */
+.star-rating .star {
+  font-size: 32px;
+  cursor: pointer;
+  color: #ccc;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect */
+.star-rating .star:hover {
+  transform: scale(1.25);
+  color: #ffcf33;
+}
+
+/* Selected stars */
+.star-rating .selected {
+  color: #ffc107;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .rate-title {
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+  .star-rating .star {
+    font-size: 28px;
+  }
+}
