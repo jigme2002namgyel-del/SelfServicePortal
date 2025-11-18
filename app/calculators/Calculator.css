@@ -1,8 +1,8 @@
 /* ================= GENERAL LAYOUT ================= */
 .calc-container {
-  max-width: 56%;
+  max-width: 66%;
   margin: 20px auto;
-  padding: 25px;
+  padding: 30px;
   font-family: "Inter", sans-serif;
   min-height: 53vh;
   box-sizing: border-box;
@@ -49,7 +49,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   border: 0.2px solid #e9e4e4;
   box-sizing: border-box;
-  width:750px;
+  width:800px;
 }
 
 .card h3 {
